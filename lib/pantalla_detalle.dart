@@ -14,7 +14,7 @@ class _PantallaDetalleState extends State<PantallaDetalle> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Pagina de Detalles'),
+        title: const Text('Pagina de Detalle'),
         centerTitle: true,
         backgroundColor: Colors.blueAccent,
         elevation: 5,
