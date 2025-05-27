@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
-class PantallaDetalle extends StatelessWidget {
+class PantallaDetalle extends StatefulWidget {
   const PantallaDetalle({super.key});
+
+  @override
+  State<PantallaDetalle> createState() => _PantallaDetalleState();
+}
+
+class _PantallaDetalleState extends State<PantallaDetalle> {
+  bool activo = false; // Estado dinámico para el botón
 
   @override
   Widget build(BuildContext context) {
@@ -63,46 +70,58 @@ class PantallaDetalle extends StatelessWidget {
 
               const SizedBox(height: 25),
 
-              // Párrafo 1
+              // Texto
               const Text(
                 'Flutter es un framework creado por Google que permite construir aplicaciones nativas para movil, web y escritorio usando un solo codigo base.',
                 style: TextStyle(fontSize: 18, height: 1.6),
                 textAlign: TextAlign.justify,
               ),
-
               const SizedBox(height: 15),
-
-              // Párrafo 2
               const Text(
                 'El lenguaje que usa es Dart, que es rapido y facil de aprender. Los widgets son la base para crear interfaces visuales atractivas y dinamicas.',
                 style: TextStyle(fontSize: 18, height: 1.6),
                 textAlign: TextAlign.justify,
               ),
-
               const SizedBox(height: 30),
 
-              // Botón
+              // Botón con estado dinámico
               Center(
-                child: ElevatedButton.icon(
-                  icon: const Icon(Icons.arrow_back),
-                  label: const Text('Volver a Inicio'),
-                  style: ElevatedButton.styleFrom(
-                    padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
-                    textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
-                    backgroundColor: Colors.blueAccent,
-                  ),
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          activo = !activo;
+                        });
+                      },
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: activo ? Colors.green : Colors.grey,
+                      ),
+                      child: Text(
+                        activo ? 'Activo' : 'Inactivo',
+                        style: const TextStyle(color: Colors.white, fontSize: 16),
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    ElevatedButton.icon(
+                      icon: const Icon(Icons.arrow_back),
+                      label: const Text('Volver a Inicio'),
+                      style: ElevatedButton.styleFrom(
+                        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+                        textStyle: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                        backgroundColor: Colors.blueAccent,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                    ),
+                  ],
                 ),
               ),
 
               const SizedBox(height: 25),
-
-              // Línea divisoria
               const Divider(thickness: 2),
-
               const SizedBox(height: 10),
 
               // Tip

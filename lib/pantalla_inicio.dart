@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'pantalla_detalle.dart';
 
-class PantallaInicio extends StatelessWidget {
+class PantallaInicio extends StatefulWidget {
   const PantallaInicio({super.key});
+
+  @override
+  State<PantallaInicio> createState() => _PantallaInicioState();
+}
+
+class _PantallaInicioState extends State<PantallaInicio> {
+  int contador = 0; // Estado dinámico
 
   @override
   Widget build(BuildContext context) {
@@ -68,6 +75,30 @@ class PantallaInicio extends StatelessWidget {
                   ),
                 ),
               ),
+
+              const SizedBox(height: 30),
+
+              // Contador dinámico
+              Center(
+                child: Column(
+                  children: [
+                    Text(
+                      'Contador: $contador',
+                      style: const TextStyle(fontSize: 22),
+                    ),
+                    const SizedBox(height: 10),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          contador++;
+                        });
+                      },
+                      child: const Text('Aumentar contador'),
+                    ),
+                  ],
+                ),
+              ),
+
               const SizedBox(height: 30),
 
               // Botón para navegar a detalles
@@ -90,6 +121,7 @@ class PantallaInicio extends StatelessWidget {
                   },
                 ),
               ),
+
               const SizedBox(height: 30),
               const Divider(thickness: 2),
               const SizedBox(height: 10),
